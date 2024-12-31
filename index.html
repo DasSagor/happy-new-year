@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body, html {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .container {
+      height: 100vh;
+      background: linear-gradient(to bottom, #44337a, #6b46c1, #702459);
+      position: relative;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .firework {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      animation: firework 2s ease-out forwards;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: 0;
+      color: #f687b3;
+      font-size: 24px;
+      animation: float 6s linear forwards;
+    }
+
+    .text-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      animation: fadeIn 1s forwards 0.5s;
+    }
+
+    .title {
+      font-size: 4rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #f8b4d9, #d6bcfa, #a3bffa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    .year {
+      font-size: 2.5rem;
+      color: #fed7e2;
+      animation: bounce 2s infinite;
+    }
+
+    .message {
+      margin-top: 1.5rem;
+      color: #fbb6ce;
+      font-style: italic;
+      font-size: 1.25rem;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+
+    @keyframes firework {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="text-container">
+      <h1 class="title">Happy New Year</h1>
+      <p class="year">2025</p>
+      <p class="message">May your year be filled with love & magic ✨</p>
+    </div>
+  </div>
+
+  <script>
+    function createStars() {
+      const container = document.getElementById('container');
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animation = `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(star);
+      }
+    }
+
+    function createFirework() {
+      const container = document.getElementById('container');
+      const firework = document.createElement('div');
+      firework.className = 'firework';
+      firework.style.left = `${Math.random() * 100}%`;
+      firework.style.top = `${Math.random() * 60}%`;
+      firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      firework.style.boxShadow = '0 0 30px currentColor';
+      container.appendChild(firework);
+      setTimeout(() => firework.remove(), 2000);
+    }
+
+    function createHeart() {
+      const container = document.getElementById('container');
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '❤';
+      heart.style.left = `${Math.random() * 100}%`;
+      container.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    createStars();
+    setInterval(createFirework, 1000);
+    setInterval(createHeart, 1500);
+  </script>
+</body>
+</html>
+
+```
+
+Just save with .html extension and open in browser to see the animation.
+
